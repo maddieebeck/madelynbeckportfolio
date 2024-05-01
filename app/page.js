@@ -1,95 +1,122 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faSpotify,
+  faFacebook,
+  faLinkedin,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
+
+import { motion, AnimatePresence } from "framer-motion";
+
+import Resume from "../components/Resume";
+import Portfolio from "../components/Portfolio";
+import Homepage from "../components/Homepage";
+
+const accounts = [
+  {
+    name: "Instagram",
+    icon: faInstagram,
+    url: "https://www.instagram.com/maddieebeck",
+  },
+  {
+    name: "Facebook",
+    icon: faFacebook,
+    url: "https://www.facebook.com/maddie.beck.9275",
+  },
+  {
+    name: "LinkedIn",
+    icon: faLinkedin,
+    url: "https://www.linkedin.com/in/madelyn-beck",
+  },
+  {
+    name: "GitHub",
+    icon: faGithub,
+    url: "https://github.com/maddieebeck",
+  },
+  {
+    name: "Spotify",
+    icon: faSpotify,
+    url: "https://open.spotify.com/user/maddieebeck",
+  },
+];
+
+const pages = [
+  {
+    title: "Home",
+    component: <Homepage />,
+    //backgroundColor: "red",
+  },
+  {
+    title: "Resume",
+    component: <Resume />,
+    //backgroundColor: "green",
+  },
+  {
+    title: "Portfolio",
+    component: <Portfolio />,
+    //backgroundColor: "lightblue",
+  },
+];
+
+const Mainpage = () => {
+  const [activePageIndex, setActivePageIndex] = useState(0);
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
+    <div>
+      <nav>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          <img src="mblogo.svg" alt="logo" width="175" />
         </div>
-      </div>
+        <div>
+          {pages.map((page, index) => {
+            return (
+              <button
+                key={index}
+                onClick={() => {
+                  setActivePageIndex(index);
+                }}
+              >
+                {page.title}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+      <main>
+        <AnimatePresence>
+          <motion.div
+            key={activePageIndex}
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1, transition: { delay: 1 } }}
+            exit={{ x: -300, opacity: 0 }}
+            style={{ backgroundColor: pages[activePageIndex].backgroundColor }}
+          >
+            {pages[activePageIndex].component}
+          </motion.div>
+        </AnimatePresence>
+      </main>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <footer>
+        <div class="contactbar">
+          <p>Madelyn Beck</p>
+          <p>mgbeck@syr.edu</p>
+          <p>(716)536-9502</p>
+          <p>Syracuse, NY 13210</p>
+        </div>
+        <div class="icons">
+          {accounts.map((account, index) => {
+            return (
+              <a href={account.url} target="_blank">
+                <FontAwesomeIcon icon={account.icon} />
+              </a>
+            );
+          })}
+        </div>
+      </footer>
+    </div>
   );
-}
+};
+export default Mainpage;

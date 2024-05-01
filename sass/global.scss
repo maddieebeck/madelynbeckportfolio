@@ -1,0 +1,58 @@
+@use "./vendor";
+@use "./base";
+
+body {
+  background: linear-gradient(to top right, #eeeced 30%, #bfc694 100%);
+  font-family: "crimson text";
+}
+
+nav {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+.icons {
+  margin-left: 1rem;
+}
+.contactbar {
+  background-color: #d4a633;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  margin-top: 0.25rem;
+  padding: 1rem;
+  font-size: 1.25rem;
+  gap: 1rem;
+}
+
+a {
+  color: #3c4b33;
+}
+
+button {
+  border: 0;
+  color: #3c4b33;
+  background: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button:hover {
+  font-weight: bold;
+}
+
+iframe {
+  width: 400px;
+  height: 800px;
+  margin: 0px;
+  image {
+    width: 50%;
+  }
+}

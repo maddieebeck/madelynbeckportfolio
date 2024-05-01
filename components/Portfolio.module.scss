@@ -1,0 +1,16 @@
+.portfolio {
+  text-align: center;
+  h1 {
+    font-size: 3.5rem;
+    color: #d4a633;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+.pdfs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem;
+}
