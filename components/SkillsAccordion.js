@@ -7,10 +7,7 @@ const skills = [
     title: "Digital",
     skills: (
       <ul>
-        <li>
-          Adobe Creative Suites "(Illustrator, InDesign, Photoshop, XD,
-          Premiere)"
-        </li>
+        <li>Adobe Creative Suites</li>
         <li>JavaScript</li>
         <li>React</li>
         <li>SQL</li>

@@ -1,4 +1,3 @@
-import ImageSlider from "./WritingImageSlider";
 import BigImageScroll from "./BigImageScroll";
 
 import styles from "./Homepage.module.scss";
